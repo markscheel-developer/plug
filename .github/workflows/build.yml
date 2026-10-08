@@ -1,0 +1,22 @@
+name: Build Mac Plugin
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Plugin
+        run: cargo build --release --lib
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pluguzu-mac-plugin
+          path: target/release/libpluguzu.*
