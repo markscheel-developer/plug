@@ -9,6 +9,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install Mac Audio Libraries
+        run: brew install libsndfile jack
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
