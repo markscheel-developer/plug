@@ -15,6 +15,12 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Bypass Linker Error
+        run: |
+          mkdir -p target/release/deps
+          ar rcs target/release/deps/libpluguzu.a
+          ar rcs target/release/libpluguzu.a
+
       - name: Build Plugin
         run: cargo build --release --lib
 
